@@ -13,25 +13,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CSVLoader {
-    public static void main(String[] args) throws IOException {
-
-    }
+    public static void main(String[] args) throws IOException {}
 
     // Solution to the deprecated formatting
     private static final CSVFormat CSV_FORMAT  = CSVFormat.Builder.create(CSVFormat.DEFAULT)
             .setIgnoreSurroundingSpaces(true)
             .build();
 
-
     public static List<Person> readPeopleFromCSV(String fileName) throws IOException {
         List<Person> people = new ArrayList<>();
-
-        String root = "D:\\local";
-        //String fileName = "people_b.csv";
-        String filePath = root + "\\" + fileName;
+        String filePath = "D:\\local\\" + fileName;
 
         FileReader reader = new FileReader(filePath);
-
         CSVParser parser = CSVParser.parse(reader, CSV_FORMAT);
 
         for (CSVRecord record: parser) {
