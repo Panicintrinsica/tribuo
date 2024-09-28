@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="nord">
+<head>
+    <meta charset="UTF-8">
+    <title>People</title>
+    <link href="/css/output.css" rel="stylesheet">
+</head>
+<body>
+
+
+<div class="flex justify-center">
+    <div class="w-full max-w-screen-lg px-4">
+        <h1 class="text-3xl font-bold tracking-tight sm:text-6xl">People</h1>
+
+        <div class="divider"></div>
+        <table class="table table-zebra">
+            <thead>
+            <tr>
+                <td>First Name</td>
+                <td>Last Name</td>
+                <td>Gender</td>
+                <td>Address</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="person : ${people}">
+                <td th:text="${person.firstName}"></td>
+                <td th:text="${person.lastName}"></td>
+                <td th:text="${person.gender}"></td>
+                <td th:text="${person.address}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+
+
+</body>
+</html>

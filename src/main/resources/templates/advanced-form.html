@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Advanced Users</title>
+</head>
+<body>
+
+<div class="overflow-x-auto">
+    <table>
+        <tr>
+            <td>Table 1 - Iterate List</td>
+        </tr>
+
+        <tr th:each="user : ${users1}">
+            <td th:text="${user.name}"></td>
+        </tr>
+    </table>
+</div>
+
+
+
+</body>
+</html>
