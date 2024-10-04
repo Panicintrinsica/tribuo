@@ -16,7 +16,7 @@ public class HomeController {
 
         model.addAttribute("message", "Hello");
         model.addAttribute("user", activeUser);
-        return "index-form";
+        return "landing";
     }
 
     @GetMapping("/advanced")
