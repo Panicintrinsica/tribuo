@@ -1,0 +1,22 @@
+{
+  "east": {
+    "available ": ["E001","E002","E003"],
+    "preferred ": 2,
+    "price ": 10
+  },
+  "west": {
+    "available ": ["E501","E502","E503"],
+    "preferred ": 16,
+    "price ": 5
+  },
+  "south": {
+    "available ": ["S101","S102","S103","S104","S105"],
+    "preferred ": 2,
+    "price ": 2
+  },
+  "north": {
+    "available ": ["N601","N602","N603","N604","N605"],
+    "preferred ": 1,
+    "price ": 2
+  }
+}

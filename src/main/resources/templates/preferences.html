@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{layouts/main}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+</head>
+<body>
+<main layout:fragment="content">
+
+    <div class="container">
+        <h1>Seating Preference Summary</h1>
+        <table class="table table-bordered table-hover table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Stand Position</th>
+                <th scope="col">Available Seats</th>
+                <th scope="col">Preferred Seats</th>
+                <th scope="col">Discount Price per Ticket</th>
+                <th scope="col">Estimated Total Earnings</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="seatSummary : ${seatSummaries}">
+                <th scope="row" th:text="${seatSummary.name}"></th>
+                <td th:text="${seatSummary.availableCount}"></td>
+                <td th:text="${seatSummary.preferred}"></td>
+                <td th:text="${#numbers.formatCurrency(seatSummary.price)}"></td>
+                <td th:text="${#numbers.formatCurrency(seatSummary.estimatedTotalEarnings)}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</main>
+</body>
+</html>
