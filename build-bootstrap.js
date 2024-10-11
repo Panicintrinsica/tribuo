@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2024. Emrys Corbin (https://corbin.dev/). All Rights Reserved.
+ */
+
 const fs = require('fs');
 const path = require('path');
 

@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2024. Emrys Corbin (https://corbin.dev/). All Rights Reserved.
+ */
+
 package msu.itc475.mwccdc;
 
 import msu.itc475.mwccdc.types.Person;
