@@ -25,6 +25,12 @@ public class PreferenceSummaryController {
     public String index(Model model) {
 
         List<SeatSummary> seatSummaries = new ArrayList<>();
+        double totalEarnings = 0.0;
+        int totalAvailableSeats = 0;
+        int totalPreferredSeats = 0;
+        int totalUnclaimedSeats = 0;
+        int totalRemainingSeats = 0;
+
         try {
             // Load and parse JSON file
             ObjectMapper objectMapper = new ObjectMapper();
@@ -54,17 +60,32 @@ public class PreferenceSummaryController {
 
                 int preferred = preferredNode.isMissingNode() ? 0 : preferredNode.asInt(0);
                 double price = priceNode.isMissingNode() ? 0.0 : priceNode.asDouble(0.0);
-                double estimatedTotalEarnings = preferred * price;
+
+                double estimatedTotalEarnings = (preferred > availableSeats.size())
+                        ? price * availableSeats.size()
+                        : preferred * price;
+
+                // Add to total
+                totalEarnings += estimatedTotalEarnings;
+                totalAvailableSeats += availableSeats.size();
+                totalPreferredSeats += preferred;
+
+                if(availableSeats.size() > preferred){
+                    totalRemainingSeats += (availableSeats.size() - preferred);
+                }
 
                 seatSummaries.add(new SeatSummary(name, availableSeats, preferred, price, estimatedTotalEarnings));
             }
 
         } catch (IOException e) {
             e.printStackTrace();
-            // Handle error appropriately (logging, default values, etc.)
         }
 
         model.addAttribute("seatSummaries", seatSummaries);
+        model.addAttribute("totalEarnings", totalEarnings);
+        model.addAttribute("totalAvailableSeats", totalAvailableSeats);
+        model.addAttribute("totalPreferredSeats", totalPreferredSeats);
+        model.addAttribute("totalRemainingSeats", totalRemainingSeats);
         return "preferences";
     }
 
