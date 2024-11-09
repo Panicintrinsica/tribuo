@@ -37,18 +37,14 @@ public class RewardService {
     }
 
     public void processRewards() throws IOException {
-        logger.log(Level.INFO, "Starting reward processing...");
-
         // Clear all existing rewards
         rewardRepository.deleteAll();
-        logger.log(Level.INFO, "Cleared all existing rewards.");
 
+        // Get all fans from the database and store them in a temp list to work with.
         List<Fan> tempFanList = new ArrayList<>(fanRepository.findAll());
-        logger.log(Level.INFO, "Fetched all fans: " + tempFanList);
 
-        // Use the path from src/main/resources
+        // Load seat IDs from the config file.
         Map<String, List<String>> seatData = ConfigReader.getSeatData("static/data/prefData.json");
-        logger.log(Level.INFO, "Seat data loaded from config: " + seatData);
 
         // Store the remaining seats after allocation for overflow
         Map<String, List<String>> remainingSeats = new HashMap<>();
@@ -72,7 +68,7 @@ public class RewardService {
             tempFanList.removeAll(preferredFans);
         }
 
-        // Handle overflow by assigning remaining seats
+        // Second pass allocation once preferred are seated.
         for (Map.Entry<String, List<String>> entry : remainingSeats.entrySet()) {
             String stand = entry.getKey();
             List<String> seats = entry.getValue();
@@ -81,43 +77,28 @@ public class RewardService {
                 allocateSeats(tempFanList, seats, stand);
             }
         }
-
-        logger.log(Level.INFO, "Reward processing completed.");
     }
 
     private void allocateSeats(List<Fan> fans, List<String> seats, String stand) {
-        logger.log(Level.INFO, "Allocating seats for stand: " + stand + " with fans: " + fans);
-
-        List<Fan> selectedFans;
-        switch (stand) {
-            case "NORTH":
-                selectedFans = AllocationUtil.militaryPrioritySelection(fans, seats.size());
-                break;
-            case "SOUTH":
-                selectedFans = AllocationUtil.randomSelection(fans, seats.size());
-                break;
-            case "EAST":
-            case "WEST":
-                selectedFans = AllocationUtil.firstComeFirstServed(fans, seats.size());
-                break;
-            default:
-                throw new IllegalArgumentException("Unknown stand: " + stand);
-        }
-
-        logger.log(Level.INFO, "Selected fans for " + stand + ": " + selectedFans);
+        List<Fan> selectedFans = switch (stand) {
+            case "NORTH" -> AllocationUtil.militaryPrioritySelection(fans, seats.size());
+            case "SOUTH" -> AllocationUtil.randomSelection(fans, seats.size());
+            case "EAST", "WEST" -> AllocationUtil.firstComeFirstServed(fans, seats.size());
+            default -> throw new IllegalArgumentException("Unknown stand: " + stand);
+        };
 
         List<String> allocatedSeats = new ArrayList<>();
+
         for (int i = 0; i < seats.size() && i < selectedFans.size(); i++) {
             Fan fan = selectedFans.get(i);
             fans.remove(fan);
 
             Reward reward = new Reward();
-            reward.setSeatId(seats.get(i)); // Use the full seat identifier including the letter
+            reward.setSeatId(seats.get(i));
             reward.setFanId(fan.getId());
 
             rewardRepository.save(reward);
             allocatedSeats.add(seats.get(i)); // Mark this seat as allocated
-            logger.log(Level.INFO, "Saved reward for fan: " + fan.getId() + " with seat: " + seats.get(i));
         }
 
         // Remove allocated seats from the original list
