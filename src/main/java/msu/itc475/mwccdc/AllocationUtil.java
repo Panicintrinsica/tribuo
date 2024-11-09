@@ -7,6 +7,8 @@ package msu.itc475.mwccdc;
 import msu.itc475.mwccdc.types.Fan;
 
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class AllocationUtil {
@@ -26,23 +28,49 @@ public class AllocationUtil {
     }
 
     public static List<Fan> militaryPrioritySelection(List<Fan> fans, int numberOfSeats) {
-        List<Fan> militaryFans = fans.stream().filter(Fan::isMilitary).collect(Collectors.toList());
-        List<Fan> nonMilitaryFans = fans.stream().filter(fan -> !fan.isMilitary()).collect(Collectors.toList());
+        Random random = new Random();
 
-        PriorityQueue<Fan> priorityQueue = new PriorityQueue<>((f1, f2) -> {
-            double weight1 = f1.isMilitary() ? 0.8 : 0.2;
-            double weight2 = f2.isMilitary() ? 0.8 : 0.2;
-            return Double.compare(weight2, weight1);
-        });
+        // Create a new list from the original list to avoid modifying it directly
+        List<Fan> shuffledFans = new ArrayList<>(fans);
 
-        priorityQueue.addAll(militaryFans);
-        priorityQueue.addAll(nonMilitaryFans);
+        // Shuffle the list to ensure initial randomness
+        Collections.shuffle(shuffledFans, random);
 
+        // List to store the selected fans based on the priority
         List<Fan> selectedFans = new ArrayList<>();
-        while (selectedFans.size() < numberOfSeats && !priorityQueue.isEmpty()) {
-            selectedFans.add(priorityQueue.poll());
+
+        // Loop until the required number of seats are filled or there are no more fans left
+        for (int i = 0; i < numberOfSeats && !shuffledFans.isEmpty(); i++) {
+            double totalWeight = 0.0;
+
+            // Calculate the total weight based on military priority
+            for (Fan fan : shuffledFans) {
+                totalWeight += fan.isMilitary() ? 0.8 : 0.2;
+            }
+
+            // Generate a random number in the range of total weight
+            double r = random.nextDouble() * totalWeight;
+
+            double runningWeight = 0.0;
+            Fan selectedFan = null;
+
+            // Determine which fan to select based on the weighted random number
+            for (Fan fan : shuffledFans) {
+                runningWeight += fan.isMilitary() ? 0.8 : 0.2;
+                if (r <= runningWeight) {
+                    selectedFan = fan;
+                    break;
+                }
+            }
+
+            // If a fan is selected, add them to the selected list and remove from the shuffled list
+            if (selectedFan != null) {
+                selectedFans.add(selectedFan);
+                shuffledFans.remove(selectedFan);
+            }
         }
 
+        // Return the list of selected fans prioritizing military fans
         return selectedFans;
     }
 }
