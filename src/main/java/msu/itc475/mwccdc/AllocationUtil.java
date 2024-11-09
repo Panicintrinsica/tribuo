@@ -3,12 +3,8 @@
  */
 
 package msu.itc475.mwccdc;
-
 import msu.itc475.mwccdc.types.Fan;
-
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class AllocationUtil {
