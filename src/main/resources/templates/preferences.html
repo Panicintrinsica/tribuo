@@ -11,7 +11,6 @@
 </head>
 <body>
 <main layout:fragment="content">
-
     <div class="container">
         <h1>Seating Preference Summary</h1>
         <table class="table table-bordered table-hover table-striped">
@@ -24,17 +23,10 @@
                 <th scope="col">Estimated Total Earnings</th>
             </tr>
             </thead>
-            <tbody>
-            <tr th:each="seatSummary : ${seatSummaries}">
-                <th scope="row" th:text="${seatSummary.name}"></th>
-                <td th:text="${seatSummary.availableCount}"></td>
-                <td th:text="${seatSummary.preferred}"></td>
-                <td th:text="${#numbers.formatCurrency(seatSummary.price)}"></td>
-                <td th:text="${#numbers.formatCurrency(seatSummary.estimatedTotalEarnings)}"></td>
-            </tr>
+            <tbody id="seating-table">
+            <!-- Rows Inserted By JavaScript -->
             </tbody>
         </table>
-
 
         <div class="container my-3">
             <div class="row gy-3 gx-3">
@@ -47,7 +39,7 @@
                             Total Earnings
                         </div>
                         <div class="metric-data">
-                            <span th:text="${#numbers.formatCurrency(totalEarnings)}"></span>
+                            <span id="total-earnings">0</span>
                         </div>
                     </div>
 
@@ -61,7 +53,7 @@
                             Seats
                         </div>
                         <div class="metric-data">
-                            <span th:text="${totalRemainingSeats}"></span> / <span th:text="${totalAvailableSeats}"></span>
+                            <span id="total-filled-seats">0</span> / <span id="total-available-seats">0</span>
                         </div>
                     </div>
                 </div>
@@ -75,7 +67,7 @@
                             Registrations
                         </div>
                         <div class="metric-data">
-                            <span th:text="${totalPreferredSeats}"></span>
+                            <span id="registrations">0</span>
                         </div>
                     </div>
 
@@ -84,6 +76,69 @@
         </div>
     </div>
 
+    <div class="mt-5 container">
+        <h1>Preference Gathering</h1>
+        <form id="preferenceForm" class="container g-3">
+            <div class="row g-3">
+                <div class="col-sm-6">
+                    <label for="firstName" class="form-label">First Name</label>
+                    <input id="firstName" class="form-control" tabindex="1" type="text">
+                </div>
+                <div class="col-sm-6">
+                    <label for="lastName" class="form-label">Last Name</label>
+                    <input id="lastName" class="form-control" tabindex="2" type="text">
+                </div>
+            </div>
+
+            <div class="row mt-2 g-3">
+                <div class="col-sm-6">
+                    <label for="email" class="form-label">E-Mail</label>
+                    <input id="email" class="form-control" tabindex="3" type="email">
+                </div>
+                <div class="col-sm-6">
+                    <label for="phone" class="form-label">Phone Number</label>
+                    <input id="phone" class="form-control" tabindex="4" type="tel">
+                </div>
+            </div>
+
+            <div class="row mt-2 g-3">
+                <div class="col-sm-4">
+                    <label for="firstOccupation" class="form-label">Occupation</label>
+                    <select id="firstOccupation" class="form-select" tabindex="5" type="text">
+                        <option value="STU">Student</option>
+                        <option value="EDU">Educator</option>
+                        <option value="MLT">Military</option>
+                        <option value="OTH">Other</option>
+                    </select>
+                </div>
+                <div class="col-sm-4">
+                    <label for="preferredStand" class="form-label">Preferred Stand</label>
+                    <select id="preferredStand" class="form-select" tabindex="6" type="text">
+                        <option value="EAST">East</option>
+                        <option value="WEST">West</option>
+                        <option value="SOUTH">South</option>
+                        <option value="NORTH">North</option>
+                    </select>
+                </div>
+                <div class="col-sm-4">
+                    <label for="reservationDate" class="form-label">Reservation Date</label>
+                    <input type="input" placeholder="yyyy-MM-dd HH:mm:ss.SSS" id="reservationDate" aria-label="Reservation Time" class="form-control">
+                </div>
+            </div>
+
+            <div class="mt-5 g-4 btn-row">
+                <button type="submit" class="btn btn-primary">Add</button>
+                <form id="jsonImportForm">
+                    <input type="file" id="fileInput" accept=".json" style="display: none;" />
+                    <button type="button" id="importBtn" class="btn btn-secondary">Import</button>
+                </form>
+                <button type="button" class="btn btn-warning" onclick="handleRewardClick()">Reward</button>
+            </div>
+        </form>
+
+    </div>
 </main>
+
 </body>
+
 </html>

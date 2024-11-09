@@ -11,13 +11,17 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/bootstrap-icons.css">
     <link rel="stylesheet" href="/css/styles.css">
-    <script src="/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-    <div th:replace="~{components/header}"></div>
+<div th:replace="components/header"></div>
+<main layout:fragment="content"></main>
+<div th:replace="components/footer"></div>
 
-    <main layout:fragment="content"></main>
+    <!-- Include Modal Fragment Here -->
+    <div th:replace="components/modal"></div>
 
-    <div th:replace="~{components/footer}"></div>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/jquery-3.7.1.min.js"></script>
+    <script src="/js/preferences.js"></script>
 </body>
 </html>

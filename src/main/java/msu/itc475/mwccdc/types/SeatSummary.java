@@ -4,16 +4,14 @@
 
 package msu.itc475.mwccdc.types;
 
-import java.util.List;
-
 public class SeatSummary {
     private String name;
-    private List<String> available;
+    private int available;
     private int preferred;
     private double price;
     private double estimatedTotalEarnings;
 
-    public SeatSummary(String name, List<String> available, int preferred, double price, double estimatedTotalEarnings) {
+    public SeatSummary(String name, int available, int preferred, double price, double estimatedTotalEarnings) {
         this.name = name;
         this.available = available;
         this.preferred = preferred;
@@ -22,8 +20,8 @@ public class SeatSummary {
     }
 
     public String getName() { return titleCase(name); }
-    public List<String> getAvailableSeats() { return available; }
-    public int getAvailableCount() { return available.size(); }
+    public int getAvailableSeats() { return available; }
+    public int getAvailableCount() { return available; }
     public int getPreferred() { return preferred; }
     public double getPrice() { return price; }
     public double getEstimatedTotalEarnings() { return estimatedTotalEarnings; }

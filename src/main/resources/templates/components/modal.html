@@ -1,0 +1,45 @@
+<!--
+  ~ Copyright (c) 2024. Emrys Corbin (https://corbin.dev/). All Rights Reserved.
+  -->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Modal Fragment</title>
+</head>
+<body>
+<div class="modal fade" id="dataModal" tabindex="-1" aria-labelledby="dataModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="dataModalLabel">Imported Data</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="overflow-y: auto; font-size: 14px;">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>First Occupation</th>
+                        <th>Preferred Stand</th>
+                        <th>Reservation Time</th>
+                    </tr>
+                    </thead>
+                    <tbody id="dataBody">
+                    <!-- Rows will be inserted here using JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-warning" id="submitBtn">Replace</button>
+                <button type="button" class="btn btn-primary" id="appendBtn">Append</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
