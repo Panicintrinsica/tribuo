@@ -34,11 +34,6 @@ public class RewardController {
         return "rewards";
     }
 
-//    @GetMapping
-//    public String getAllRewards() {
-//        return rewardService.getAllRewards().toString();
-//    }
-
     @PostMapping("/trigger")
     public ResponseEntity<String> triggerReward() {
         logger.log(Level.INFO, "Trigger reward endpoint called.");
