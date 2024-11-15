@@ -12,6 +12,31 @@
 <body>
 <main layout:fragment="content">
 
+  <div class="container">
+    <h1>Rewards Summary</h1>
+    <table class="table table-bordered table-hover table-striped">
+      <thead>
+      <tr>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Preferred Stand</th>
+        <th scope="col">Seat</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="person : ${persons}">
+        <td th:text="${person.firstName}">First Name</td>
+        <td th:text="${person.lastName}">Last Name</td>
+        <td th:text="${person.email}">Email</td>
+        <td th:text="${person.phone}">Phone</td>
+        <td th:text="${person.preferredStand}">Preferred Stand</td>
+        <td th:text="${person.seatId}">Seat</td>
+      </tr>
+      </tbody>
+    </table>
+
 </main>
 </body>
 </html>

@@ -386,7 +386,7 @@ function handleRewardClick() {
         .then(response => response.text())
         .then(data => {
             console.log(data);
-            //window.location.href = 'http://localhost:8080/rewards/';
+            window.location.href = 'http://localhost:8080/rewards';
         })
         .catch(error => {
             console.error('Error:', error);

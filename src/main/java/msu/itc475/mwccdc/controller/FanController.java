@@ -8,7 +8,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import msu.itc475.mwccdc.services.FanService;
 import msu.itc475.mwccdc.types.Fan;
-import msu.itc475.mwccdc.types.ImportResponse;
+import msu.itc475.mwccdc.dto.ImportResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

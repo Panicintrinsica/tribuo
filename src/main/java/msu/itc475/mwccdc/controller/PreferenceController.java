@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class PreferenceController {
 
-    @GetMapping("/")
+    @GetMapping("/preferences")
     public String index(Model model) {
         return "preferences";
     }

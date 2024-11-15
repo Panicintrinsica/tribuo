@@ -6,6 +6,7 @@ package msu.itc475.mwccdc.services;
 
 import msu.itc475.mwccdc.AllocationUtil;
 import msu.itc475.mwccdc.ConfigReader;
+import msu.itc475.mwccdc.dto.RewardResponse;
 import msu.itc475.mwccdc.repos.FanRepository;
 import msu.itc475.mwccdc.repos.RewardRepository;
 import msu.itc475.mwccdc.types.Fan;
@@ -34,6 +35,10 @@ public class RewardService {
     public RewardService(RewardRepository rewardRepository, FanRepository fanRepository) {
         this.rewardRepository = rewardRepository;
         this.fanRepository = fanRepository;
+    }
+
+    public List<RewardResponse> getAllRewardsWithFanDetails() {
+        return rewardRepository.findRewardsWithFanDetails();
     }
 
     public void processRewards() throws IOException {
@@ -95,7 +100,9 @@ public class RewardService {
 
             Reward reward = new Reward();
             reward.setSeatId(seats.get(i));
-            reward.setFanId(fan.getId());
+            reward.setFan(fan); // Set the fan object
+
+            fan.setReward(reward); // Ensure the fan knows about the reward
 
             rewardRepository.save(reward);
             allocatedSeats.add(seats.get(i)); // Mark this seat as allocated

@@ -4,10 +4,13 @@
 
 package msu.itc475.mwccdc.controller;
 
+import msu.itc475.mwccdc.dto.RewardResponse;
 import msu.itc475.mwccdc.services.RewardService;
 import msu.itc475.mwccdc.types.Reward;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -16,7 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-@RestController
+@Controller
 @RequestMapping("/rewards")
 public class RewardController {
 
@@ -29,9 +32,11 @@ public class RewardController {
         this.rewardService = rewardService;
     }
 
-    @GetMapping("/")
-    public String index() {
-        return "rewards";
+    @GetMapping("")
+    public String index(Model model) {
+        List<RewardResponse> rewards = rewardService.getAllRewardsWithFanDetails();
+        model.addAttribute("persons", rewards);
+        return "rewards"; // Ensure this returns the template name
     }
 
     @PostMapping("/trigger")
@@ -45,5 +50,10 @@ public class RewardController {
             logger.log(Level.SEVERE, "Failed to process rewards", e);
             return ResponseEntity.status(500).body("Failed to process rewards.");
         }
+    }
+
+    @GetMapping("/all")
+    public List<RewardResponse> getAllRewards() {
+        return rewardService.getAllRewardsWithFanDetails();
     }
 }

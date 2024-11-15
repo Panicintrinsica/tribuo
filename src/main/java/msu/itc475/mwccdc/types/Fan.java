@@ -3,10 +3,13 @@ package msu.itc475.mwccdc.types;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class Fan {
 
     @Id
+    @Column(name = "fan_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -104,4 +107,16 @@ public class Fan {
     public boolean isMilitary() {
         return "MLT".equalsIgnoreCase(firstOccupation);
     }
+
+
+    public Reward getReward() {
+        return reward;
+    }
+
+    public void setReward(Reward reward) {
+        this.reward = reward;
+    }
+
+    @OneToOne(mappedBy = "fan")
+    private Reward reward;
 }

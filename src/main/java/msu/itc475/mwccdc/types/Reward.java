@@ -17,8 +17,12 @@ public class Reward {
     @Column(name = "seat_id", nullable = false)
     private String seatId; // Changed to String
 
-    @Column(name = "fan_id", nullable = false)
+    @Column(name = "fan_id", nullable = false, insertable = false, updatable = false)
     private Long fanId;
+
+    @OneToOne
+    @JoinColumn(name = "fan_id", referencedColumnName = "fan_id")
+    private Fan fan;
 
     // Getters and Setters
 
@@ -45,4 +49,13 @@ public class Reward {
     public void setFanId(Long fanId) {
         this.fanId = fanId;
     }
+
+    public void setFan(Fan fan) {
+        this.fan = fan;
+        if (fan != null) {
+            this.fanId = fan.getId();
+        }
+    }
+
+
 }
