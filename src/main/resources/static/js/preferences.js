@@ -378,17 +378,17 @@ function submitImportResults(data, importType) {
 
 function handleRewardClick() {
     fetch('http://localhost:8080/rewards/trigger', {
-        method: 'POST', // Ensure this is POST
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         }
     })
-        .then(response => response.text())
-        .then(data => {
-            console.log(data);
-            window.location.href = 'http://localhost:8080/rewards';
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+    .then(response => response.text())
+    .then(data => {
+        console.log(data);
+        window.location.href = 'http://localhost:8080/rewards';
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 }

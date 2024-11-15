@@ -13,15 +13,14 @@
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-<div th:replace="components/header"></div>
-<main layout:fragment="content"></main>
-<div th:replace="components/footer"></div>
+    <div th:replace="components/header"></div>
+    <main layout:fragment="content"></main>
+    <div th:replace="components/footer"></div>
 
-    <!-- Include Modal Fragment Here -->
     <div th:replace="components/modal"></div>
 
     <script src="/js/bootstrap.bundle.min.js"></script>
     <script src="/js/jquery-3.7.1.min.js"></script>
-    <script src="/js/preferences.js"></script>
+    <div th:block layout:fragment="scripts"></div>
 </body>
 </html>
