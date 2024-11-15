@@ -9,7 +9,6 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "reward")
 public class Reward {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,7 +19,7 @@ public class Reward {
     @Column(name = "fan_id", nullable = false, insertable = false, updatable = false)
     private Long fanId;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "fan_id", referencedColumnName = "fan_id")
     private Fan fan;
 

@@ -74,21 +74,24 @@ public class RewardService {
         }
 
         // Second pass allocation once preferred are seated.
+
+        List<Fan> secondPassFans = new ArrayList<>(tempFanList);
         for (Map.Entry<String, List<String>> entry : remainingSeats.entrySet()) {
             String stand = entry.getKey();
             List<String> seats = entry.getValue();
 
-            if (!seats.isEmpty() && !tempFanList.isEmpty()) {
-                allocateSeats(tempFanList, seats, stand);
+            if (!seats.isEmpty() && !secondPassFans.isEmpty()) { // Use the local copy
+                allocateSeats(secondPassFans, seats, stand);
             }
         }
+
     }
 
     private void allocateSeats(List<Fan> fans, List<String> seats, String stand) {
         List<Fan> selectedFans = switch (stand) {
-            case "NORTH" -> AllocationUtil.militaryPrioritySelection(fans, seats.size());
-            case "SOUTH" -> AllocationUtil.randomSelection(fans, seats.size());
-            case "EAST", "WEST" -> AllocationUtil.firstComeFirstServed(fans, seats.size());
+            case "NORTH" -> new ArrayList<>(AllocationUtil.militaryPrioritySelection(fans, seats.size()));
+            case "SOUTH" -> new ArrayList<>(AllocationUtil.randomSelection(fans, seats.size()));
+            case "EAST", "WEST" -> new ArrayList<>(AllocationUtil.firstComeFirstServed(fans, seats.size()));
             default -> throw new IllegalArgumentException("Unknown stand: " + stand);
         };
 
@@ -96,19 +99,26 @@ public class RewardService {
 
         for (int i = 0; i < seats.size() && i < selectedFans.size(); i++) {
             Fan fan = selectedFans.get(i);
-            fans.remove(fan);
+
+            // Check if the fan already has a reward
+            if (hasReward(fan)) {
+                continue; // Skip this fan if they already have a reward
+            }
+            fans.remove(fan); // Remove from the input list to prevent re-selection
+
 
             Reward reward = new Reward();
             reward.setSeatId(seats.get(i));
-            reward.setFan(fan); // Set the fan object
-
-            fan.setReward(reward); // Ensure the fan knows about the reward
-
+            reward.setFan(fan);
+            fan.setReward(reward);
             rewardRepository.save(reward);
-            allocatedSeats.add(seats.get(i)); // Mark this seat as allocated
+            allocatedSeats.add(seats.get(i));
         }
 
-        // Remove allocated seats from the original list
         seats.removeAll(allocatedSeats);
+    }
+
+    private boolean hasReward(Fan fan) {
+        return rewardRepository.existsRewardForFan(fan);
     }
 }

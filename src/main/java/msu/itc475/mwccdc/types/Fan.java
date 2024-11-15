@@ -108,7 +108,6 @@ public class Fan {
         return "MLT".equalsIgnoreCase(firstOccupation);
     }
 
-
     public Reward getReward() {
         return reward;
     }
@@ -117,6 +116,6 @@ public class Fan {
         this.reward = reward;
     }
 
-    @OneToOne(mappedBy = "fan")
+    @OneToOne(mappedBy = "fan", cascade = CascadeType.ALL, orphanRemoval = true)
     private Reward reward;
 }
