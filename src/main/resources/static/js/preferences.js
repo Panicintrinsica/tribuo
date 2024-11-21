@@ -187,7 +187,10 @@ document.getElementById('preferenceForm').addEventListener('submit', (event) => 
     // Send the data to the backend
     fetch('/api/fans', { // Use the same endpoint as for importing
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+            'Content-Type': 'application/json',
+            'Import-Type': 'append'
+        },
         body: JSON.stringify(newFan)
     })
         .then(response => response.json())
