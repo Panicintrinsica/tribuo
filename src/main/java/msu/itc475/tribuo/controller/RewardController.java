@@ -2,11 +2,10 @@
  * Copyright (c) 2024. Emrys Corbin (https://corbin.dev/). All Rights Reserved.
  */
 
-package msu.itc475.mwccdc.controller;
+package msu.itc475.tribuo.controller;
 
-import msu.itc475.mwccdc.dto.RewardResponse;
-import msu.itc475.mwccdc.services.RewardService;
-import msu.itc475.mwccdc.types.Reward;
+import msu.itc475.tribuo.dto.RewardResponse;
+import msu.itc475.tribuo.services.RewardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -15,8 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 @Controller

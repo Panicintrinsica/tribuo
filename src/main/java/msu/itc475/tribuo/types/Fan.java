@@ -1,9 +1,7 @@
-package msu.itc475.mwccdc.types;
+package msu.itc475.tribuo.types;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-
-import java.util.List;
 
 @Entity
 public class Fan {

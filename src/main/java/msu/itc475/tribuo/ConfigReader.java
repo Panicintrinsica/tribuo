@@ -2,7 +2,7 @@
  * Copyright (c) 2024. Emrys Corbin (https://corbin.dev/). All Rights Reserved.
  */
 
-package msu.itc475.mwccdc;
+package msu.itc475.tribuo;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -11,7 +11,6 @@ import org.springframework.core.io.Resource;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

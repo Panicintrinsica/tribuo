@@ -2,15 +2,15 @@
  * Copyright (c) 2024. Emrys Corbin (https://corbin.dev/). All Rights Reserved.
  */
 
-package msu.itc475.mwccdc.services;
+package msu.itc475.tribuo.services;
 
-import msu.itc475.mwccdc.AllocationUtil;
-import msu.itc475.mwccdc.ConfigReader;
-import msu.itc475.mwccdc.dto.RewardResponse;
-import msu.itc475.mwccdc.repos.FanRepository;
-import msu.itc475.mwccdc.repos.RewardRepository;
-import msu.itc475.mwccdc.types.Fan;
-import msu.itc475.mwccdc.types.Reward;
+import msu.itc475.tribuo.AllocationUtil;
+import msu.itc475.tribuo.ConfigReader;
+import msu.itc475.tribuo.dto.RewardResponse;
+import msu.itc475.tribuo.repos.FanRepository;
+import msu.itc475.tribuo.repos.RewardRepository;
+import msu.itc475.tribuo.types.Fan;
+import msu.itc475.tribuo.types.Reward;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 

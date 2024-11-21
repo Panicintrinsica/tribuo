@@ -2,12 +2,11 @@
  * Copyright (c) 2024. Emrys Corbin (https://corbin.dev/). All Rights Reserved.
  */
 
-package msu.itc475.mwccdc;
+package msu.itc475.tribuo;
 
-import msu.itc475.mwccdc.types.Person;
+import msu.itc475.tribuo.types.Person;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
-import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.csv.CSVRecord;
 import org.springframework.core.io.ClassPathResource;
 

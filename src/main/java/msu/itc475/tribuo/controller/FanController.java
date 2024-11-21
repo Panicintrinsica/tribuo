@@ -2,13 +2,13 @@
  * Copyright (c) 2024. Emrys Corbin (https://corbin.dev/). All Rights Reserved.
  */
 
-package msu.itc475.mwccdc.controller;
+package msu.itc475.tribuo.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import msu.itc475.mwccdc.services.FanService;
-import msu.itc475.mwccdc.types.Fan;
-import msu.itc475.mwccdc.dto.ImportResponse;
+import msu.itc475.tribuo.services.FanService;
+import msu.itc475.tribuo.types.Fan;
+import msu.itc475.tribuo.dto.ImportResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

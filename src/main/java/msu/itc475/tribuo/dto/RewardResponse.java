@@ -2,7 +2,7 @@
  * Copyright (c) 2024. Emrys Corbin (https://corbin.dev/). All Rights Reserved.
  */
 
-package msu.itc475.mwccdc.dto;
+package msu.itc475.tribuo.dto;
 
 public class RewardResponse {
 

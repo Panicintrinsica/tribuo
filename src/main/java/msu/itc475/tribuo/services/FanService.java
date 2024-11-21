@@ -2,10 +2,10 @@
  * Copyright (c) 2024. Emrys Corbin (https://corbin.dev/). All Rights Reserved.
  */
 
-package msu.itc475.mwccdc.services;
+package msu.itc475.tribuo.services;
 
-import msu.itc475.mwccdc.repos.FanRepository;
-import msu.itc475.mwccdc.types.Fan;
+import msu.itc475.tribuo.repos.FanRepository;
+import msu.itc475.tribuo.types.Fan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

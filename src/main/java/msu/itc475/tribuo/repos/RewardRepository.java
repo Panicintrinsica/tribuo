@@ -2,11 +2,11 @@
  * Copyright (c) 2024. Emrys Corbin (https://corbin.dev/). All Rights Reserved.
  */
 
-package msu.itc475.mwccdc.repos;
+package msu.itc475.tribuo.repos;
 
-import msu.itc475.mwccdc.dto.RewardResponse;
-import msu.itc475.mwccdc.types.Fan;
-import msu.itc475.mwccdc.types.Reward;
+import msu.itc475.tribuo.dto.RewardResponse;
+import msu.itc475.tribuo.types.Fan;
+import msu.itc475.tribuo.types.Reward;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -18,7 +18,7 @@ import java.util.List;
 public interface RewardRepository extends JpaRepository<Reward, Long> {
     void deleteAll();
 
-    @Query("SELECT new msu.itc475.mwccdc.dto.RewardResponse(f.firstName, f.lastName, f.email, f.phone, f.preferredStand, r.seatId) " +
+    @Query("SELECT new msu.itc475.tribuo.dto.RewardResponse(f.firstName, f.lastName, f.email, f.phone, f.preferredStand, r.seatId) " +
             "FROM Fan f INNER JOIN f.reward r ORDER BY f.preferredStand, f.reward.seatId")
 
     List<RewardResponse> findRewardsWithFanDetails();

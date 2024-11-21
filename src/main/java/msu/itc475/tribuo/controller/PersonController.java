@@ -2,9 +2,9 @@
  * Copyright (c) 2024. Emrys Corbin (https://corbin.dev/). All Rights Reserved.
  */
 
-package msu.itc475.mwccdc.controller;
+package msu.itc475.tribuo.controller;
 
-import msu.itc475.mwccdc.types.Person;
+import msu.itc475.tribuo.types.Person;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.io.IOException;
 import java.util.List;
 
-import static msu.itc475.mwccdc.CSVLoader.readPeopleFromCSV;
+import static msu.itc475.tribuo.CSVLoader.readPeopleFromCSV;
 
 @Controller
 public class PersonController {

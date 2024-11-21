@@ -2,8 +2,8 @@
  * Copyright (c) 2024. Emrys Corbin (https://corbin.dev/). All Rights Reserved.
  */
 
-package msu.itc475.mwccdc;
-import msu.itc475.mwccdc.types.Fan;
+package msu.itc475.tribuo;
+import msu.itc475.tribuo.types.Fan;
 import java.util.*;
 import java.util.stream.Collectors;
 

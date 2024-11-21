@@ -2,7 +2,7 @@
  * Copyright (c) 2024. Emrys Corbin (https://corbin.dev/). All Rights Reserved.
  */
 
-package msu.itc475.mwccdc.types;
+package msu.itc475.tribuo.types;
 
 public class User {
     private String name;

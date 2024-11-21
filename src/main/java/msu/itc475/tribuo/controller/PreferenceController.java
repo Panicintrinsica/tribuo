@@ -2,7 +2,7 @@
  * Copyright (c) 2024. Emrys Corbin (https://corbin.dev/). All Rights Reserved.
  */
 
-package msu.itc475.mwccdc.controller;
+package msu.itc475.tribuo.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
