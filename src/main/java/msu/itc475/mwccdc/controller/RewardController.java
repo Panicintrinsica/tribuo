@@ -22,9 +22,6 @@ import java.util.logging.Logger;
 @Controller
 @RequestMapping("/rewards")
 public class RewardController {
-
-    private static final Logger logger = Logger.getLogger(RewardController.class.getName());
-
     private final RewardService rewardService;
 
     @Autowired
@@ -41,13 +38,10 @@ public class RewardController {
 
     @PostMapping("/trigger")
     public ResponseEntity<String> triggerReward() {
-        logger.log(Level.INFO, "Trigger reward endpoint called.");
-
         try {
             rewardService.processRewards();
             return ResponseEntity.ok("Reward processed successfully!");
         } catch (IOException e) {
-            logger.log(Level.SEVERE, "Failed to process rewards", e);
             return ResponseEntity.status(500).body("Failed to process rewards.");
         }
     }
