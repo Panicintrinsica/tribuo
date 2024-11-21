@@ -377,7 +377,7 @@ function submitImportResults(data, importType) {
 
 
 function handleRewardClick() {
-    fetch('http://localhost:8080/rewards/trigger', {
+    fetch('/rewards/trigger', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -386,7 +386,7 @@ function handleRewardClick() {
     .then(response => response.text())
     .then(data => {
         console.log(data);
-        window.location.href = 'http://localhost:8080/rewards';
+        window.location.href = '/rewards';
     })
     .catch(error => {
         console.error('Error:', error);
