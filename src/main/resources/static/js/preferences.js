@@ -188,8 +188,7 @@ document.getElementById('preferenceForm').addEventListener('submit', (event) => 
     fetch('/api/fans', { // Use the same endpoint as for importing
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
-            'Import-Type': 'append'
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify(newFan)
     })
@@ -356,7 +355,7 @@ function showImportResults(data) {
  */
 function submitImportResults(data, importType) {
     fetch('/api/fans', { // Update endpoint if necessary
-        method: 'POST',
+        method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
             'Import-Type': importType

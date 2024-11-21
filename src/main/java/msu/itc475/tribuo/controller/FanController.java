@@ -27,28 +27,31 @@ public class FanController {
     }
 
     @PostMapping("/api/fans")
+    public ResponseEntity<ImportResponse> addFan(@RequestBody Fan fan) {
+        try {
+            fanService.addFan(fan);
+            return ResponseEntity.ok().header("Content-Type", "application/json")
+                    .body(new ImportResponse(true, "Fan added successfully."));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(new ImportResponse(false, "Failed to add fan."));
+        }
+    }
+
+    @PutMapping("/api/fans")
     public ResponseEntity<ImportResponse> submitPreferences(
             @RequestBody Object fanData,
-            @RequestHeader(value = "Import-Type", required = false) String importType) throws JsonProcessingException {
+            @RequestHeader(value = "Import-Type") String importType) throws JsonProcessingException {
 
         ObjectMapper objectMapper = new ObjectMapper();
         String rawRequestBody = objectMapper.writeValueAsString(fanData);
 
         try {
-            if (importType != null) {
-                // Handle import (replace or append) - expecting a list of fans
-                List<Fan> fans = objectMapper.readValue(rawRequestBody, new TypeReference<List<Fan>>() {});
-                fanService.importFans(fans, importType);
-            } else {
-                // Attempt to directly deserialize into a Fan object
-                Fan fan = objectMapper.readValue(rawRequestBody, Fan.class);
-                fanService.addFan(fan);
-            }
+            List<Fan> fans = objectMapper.readValue(rawRequestBody, new TypeReference<List<Fan>>() {});
+            fanService.importFans(fans, importType);
 
             return ResponseEntity.ok().header("Content-Type", "application/json")
                     .body(new ImportResponse(true, "Preferences updated successfully."));
         } catch (JsonProcessingException e) {
-            // Log the exception for debugging
             System.err.println("Error deserializing Fan: " + e.getMessage());
             return ResponseEntity.badRequest().body(new ImportResponse(false, "Invalid fan data."));
         }
