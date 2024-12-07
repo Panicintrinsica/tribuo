@@ -11,7 +11,7 @@ public class AllocationUtil {
 
     public static List<Fan> firstComeFirstServed(List<Fan> fans, int numberOfSeats) {
         return fans.stream()
-                .sorted(Comparator.comparing(Fan::getReservationTime)) // Assuming Fan has a field reservationTime
+                .sorted(Comparator.comparing(Fan::getReservationTime))
                 .limit(numberOfSeats)
                 .collect(Collectors.toList());
     }
@@ -47,7 +47,8 @@ public class AllocationUtil {
         for (int i = 0; i < numberOfSeats; i++) {
             if (!militaryFans.isEmpty() && !nonMilitaryFans.isEmpty()) {
                 // Both lists have fans
-                double randomNumber = random.nextDouble(); // Generates a number between 0.0 (inclusive) and 1.0 (exclusive)
+                // Generates a number between 0.0 (inclusive) and 1.0 (exclusive)
+                double randomNumber = random.nextDouble();
                 if (randomNumber < 0.8) {
                     // 80% chance to select a military fan
                     selectedFans.add(militaryFans.remove(0));

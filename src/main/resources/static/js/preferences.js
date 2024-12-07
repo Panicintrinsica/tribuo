@@ -36,7 +36,7 @@ function initPreferenceTable() {
  */
 function initSummaryTable(prefData) {
     const tbody = document.getElementById('seating-table');
-    tbody.innerHTML = ''; // Clear existing content
+    tbody.innerHTML = '';
 
     Object.keys(prefData).forEach(stand => {
         const standDetail = prefData[stand];

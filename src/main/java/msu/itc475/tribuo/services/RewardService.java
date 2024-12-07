@@ -66,7 +66,7 @@ public class RewardService {
 
             // Save remaining seats for overflow
             if (!seats.isEmpty()) {
-                remainingSeats.put(stand, new ArrayList<>(seats)); // Copy the list to avoid concurrent modification issues
+                remainingSeats.put(stand, new ArrayList<>(seats));
             }
 
             tempFanList.removeAll(preferredFans);
