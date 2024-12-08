@@ -13,10 +13,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>msu.itc475</groupId>
-    <artifactId>mwccdc</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>mwccdc</name>
-    <description>mwccdc</description>
+    <artifactId>tribuo</artifactId>
+    <version>1.0</version>
+    <name>tribuo</name>
+    <description>The final project for MSU ITC 475</description>
     <url/>
     <licenses>
         <license/>
@@ -82,7 +82,17 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.5.2</version>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
         </plugins>
+
     </build>
 
 </project>
